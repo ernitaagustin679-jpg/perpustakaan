@@ -66,6 +66,7 @@ const Navbar = () => {
 
   const navItems: NavItem[] = [
     { label: 'Home', href: '#' },
+    { label: 'Gallery', href: '#gallery' },
     { label: 'Guide', href: '#guide' },
     { label: 'Services', href: '#services' },
     { label: 'Booking', href: '#booking' },
@@ -375,6 +376,77 @@ const Hero = () => {
           <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-brand-400/20 blur-3xl rounded-full" />
           <div className="absolute top-10 -left-16 w-32 h-32 bg-sage-400/20 blur-3xl rounded-full" />
         </motion.div>
+      </div>
+    </section>
+  );
+};
+
+const GallerySection = () => {
+  const images = [
+    {
+      url: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=1000",
+      title: "Main Reading Hall",
+      category: "Architecture"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=1000",
+      title: "Private Focus Pods",
+      category: "Study"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&q=80&w=1000",
+      title: "Classic Reference",
+      category: "Books"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&q=80&w=1000",
+      title: "Digital Archive",
+      category: "System"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=1000",
+      title: "Kid's Discovery",
+      category: "Youth"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&q=80&w=1000",
+      title: "Collaborative Zone",
+      category: "Communal"
+    }
+  ];
+
+  return (
+    <section id="gallery" className="py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="font-display text-4xl font-bold text-slate-900 mb-4">Discover Your Space</h2>
+          <p className="text-slate-500">Every corner of Lumina is designed to inspire your next breakthrough.</p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {images.map((img, idx) => (
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              whileHover={{ y: -10 }}
+              className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden group soft-shadow cursor-pointer"
+            >
+              <img 
+                src={img.url} 
+                alt={img.title}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+                <div className="text-brand-400 font-bold text-xs uppercase tracking-widest mb-1">{img.category}</div>
+                <div className="text-white font-display text-2xl font-bold">{img.title}</div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -806,6 +878,7 @@ export default function App() {
       <Navbar />
       <Hero />
       <GuideSection />
+      <GallerySection />
       <ServicesSection />
       <BookingSection />
       <FAQSection />
